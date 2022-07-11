@@ -95,6 +95,11 @@ class HomeController extends Controller
             $req = Http::get($getreq);
             $nearby = $req['results'];
 
+            $sql_for_appointment = "select *,datediff(date,curdate()) as date_diff from appointments where user_id = $user_id and date >= curdate() order by date_diff asc ";
+        $appointment = DB::select($sql_for_appointment);
+
+            
+
 
             return view('home')
                 ->with('calories', $calories)
@@ -106,6 +111,7 @@ class HomeController extends Controller
                 ->with(compact('todaymeal'))
                 ->with(compact('meals'))
                 ->with(compact('usernutrient'))
+                ->with(compact('appointment'))
                 ->with(compact('nearby'));
         }
     }

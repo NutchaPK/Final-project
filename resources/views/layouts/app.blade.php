@@ -70,6 +70,14 @@
         -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
     }
+    #appointment {
+      
+        position:absolute;
+        top:10%;
+        left:80%;
+
+    }
+    
     .card-content::-webkit-scrollbar {
     width: 6px;
 }

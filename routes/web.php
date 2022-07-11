@@ -25,10 +25,10 @@ Route::get('/', function () {
 Auth::routes();
 
 //View
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/history', [App\Http\Controllers\HistoryController::class, 'index'])->name('history');
-Route::get('/appointment', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment');
-Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::middleware(['auth:sanctum', 'verified'])->get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth:sanctum', 'verified'])->get('/history', [App\Http\Controllers\HistoryController::class, 'index'])->name('history');
+Route::middleware(['auth:sanctum', 'verified'])->get('/appointment', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment');
+Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
 
 //API
 Route::resource('userinformations',UserinformationController::class);

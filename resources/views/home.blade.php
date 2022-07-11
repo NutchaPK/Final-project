@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="row">
     <div class="col-lg-8">
         <div class="card">
@@ -223,7 +224,17 @@
         </div>
     </div>
 </div>
-
+@foreach($appointment as $r)
+    @if($r->date_diff == 0)
+        <div id="appointment" >
+            <div class="card" style="padding:10px;;padding:-left:10px;width:250px;">
+                <h4>นัดพบแพทย์วันนี้ ที่ {{$r->hospital}}</h4>
+                <p>แผนก : {{$r->department}} &nbsp; แพทย์ : {{$r->doctor}}</p>
+                <button style="margin-left:80%;background-color:#F37878" onclick="closenoti()">x</button>
+            </div>
+        </div>
+    @endif
+@endforeach
 <div id="toast" >
     <div class="card" style="padding:10px;;padding:-left:10px;background-color:#90C8AC;width:150px;" >
         <h5><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -235,6 +246,13 @@
 @endsection
 
 <script>
+
+    function closenoti(){
+        var x = document.getElementById("appointment");
+        x.style.display = "none";
+    }
+
+    
     function add_meal(menu_id){
         $.ajax({
        type:'POST',
@@ -254,6 +272,7 @@
 </script>
 <!--For Search Menu -->
 <script>
+    
     function SearchMenu() {
       var input, filter, table, tr, td, i, txtValue;
       input = document.getElementById("search_menu");
